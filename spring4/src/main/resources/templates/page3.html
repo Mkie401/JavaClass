@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Page3</h1>
+		<hr />
+		<form method="post" 
+			th:action="@{/page3}"
+			th:object="${userForm}">
+			<div>
+				<label>Email</label>
+				<input type="text" th:field="*{email}" required="required" />
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">錯誤訊息</span>
+			</div>
+			<button type="submit">Register</button>
+		</form>
+	</body>
+</html>
