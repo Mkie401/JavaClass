@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Home Page</h1>
+		<hr>
+		<a th:href="@{/member/logout}">Logout</a>
+		<hr>
+		<h2>Hello, <span th:text="${member.name}"></span></h2>
+		<img th:src="'data:image/*; base64, ' + ${icon}" />
+		<hr>
+		<div>
+			<sapn th:text="${page + 1}"></sapn> / 
+			<sapn th:text="${hotelPage.totalPages}"></sapn>
+		</div>
+		<div>
+			<a th:if="${page > 0}" th:href="@{/member/home(page=${page - 1},size=10)}">Prev</a>
+			<a th:if="${page +1 < hotelPage.totalPages}" th:href="@{/member/home(page=${page + 1},size=10)}">Next</a>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Tel</th>
+					<th>Address</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="hotel : ${hotelPage.content}">
+					<td th:text="${hotel.id}"></td>
+					<td th:text="${hotel.name}"></td>
+					<td th:text="${hotel.tel}"></td>
+					<td th:text="${hotel.addr}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

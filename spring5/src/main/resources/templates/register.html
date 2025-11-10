@@ -27,6 +27,6 @@
 			<button type="submit">Register</button>
 		</form>
 		<p th:if="${error}" th:text="${error}" style="color: red"></p>
-		
+			<a th:if="${error}" th:href="@{/member/login}">已有帳號, 直接登入</a>
 	</body>
 </html>
