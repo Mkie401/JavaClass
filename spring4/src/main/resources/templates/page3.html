@@ -15,6 +15,16 @@
 				<input type="text" th:field="*{email}" required="required" />
 				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">錯誤訊息</span>
 			</div>
+			<div>
+				<label>PassWord</label>
+				<input type="password" th:field="*{passwd}" required="required" />
+				<span th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}">錯誤訊息</span>
+			</div>
+			<div>
+				<label>Name</label>
+				<input type="text" th:field="*{name}" required="required" />
+				<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">錯誤訊息</span>
+			</div>
 			<button type="submit">Register</button>
 		</form>
 	</body>

@@ -2,6 +2,7 @@ package com.tw.spring4.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
@@ -74,7 +75,9 @@ public class WebController {
 	@GetMapping("/page3")
 	public String page3(Model model) {
 		//System.out.println("page3");
-		model.addAttribute("userForm", new UserForm());
+		UserForm userForm = new UserForm();
+		userForm.setEmail("請輸入Eemail");
+		model.addAttribute("userForm", userForm);
 		return "page3";
 	}
 	
@@ -89,6 +92,13 @@ public class WebController {
 		// 處理
 		System.out.println(userForm.getEmail());
 		return "page4";
+	}
+	
+	@RequestMapping("/page5")
+	public String page5(Model model) {
+		List<String> areas = List.of("北屯區","南屯區","西屯區","東區","西區");
+		model.addAttribute("areas", areas);
+		return "page5";
 	}
 	
 	
