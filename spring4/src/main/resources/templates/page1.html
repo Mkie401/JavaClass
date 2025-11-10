@@ -10,6 +10,13 @@
 		<h2 th:text="${companyName}">公司名稱</h2>
 		<p th:text="'Welcome ,' + ${username}">Hello World</p>
 		<p th:text="${'Welcome ' + ',' + username}">Hello World</p>
-		
+		<hr>
+		<div th:text="${user.id}?:'訪客'"></div>
+		<div th:text="${user.name}">User Name</div>
+		<div th:text="${user.age >= 18 ? '成年':'未成年'}">是否成年</div>
+		<div th:text="${user.gender ? '男生':'女生'}">性別</div>
+		<div th:text="${user.age}">年齡</div>
+		<div th:text="${user}"></div><hr>
+		<h2 th:text="${now}">呈現後端現在時間</h2>
 	</body>
 </html>

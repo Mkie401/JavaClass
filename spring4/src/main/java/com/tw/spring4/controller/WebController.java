@@ -1,8 +1,14 @@
 package com.tw.spring4.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.tw.spring4.test.User;
 
 /*
  * request -> Controller(Model) -> Model 網頁所需要的資料
@@ -32,7 +38,30 @@ public class WebController {
 		model.addAttribute("companyName", "123");
 		
 		
+		User user = new User();
+		user.setId(123);
+		user.setName("Peter");
+		user.setGender(true);
+		user.setAge(18);
+		model.addAttribute("user", user);
+		
+		System.out.println(user);
+		
+		String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+		
+		model.addAttribute("now", now);
+		
+		
+		
 		return "page1";
+	}
+	
+	
+	@RequestMapping("/page2/{status}")
+	public String pag2(Model model, @PathVariable String status) {
+		model.addAttribute("status", status);
+		
+		return "page2";
 	}
 	
 }
