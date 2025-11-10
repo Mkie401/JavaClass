@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Register Form</h1>
+		<hr>
+		<form th:action="@{/member/register}" th:object="${memberForm}" method="post" enctype="multipart/form-data">
+			<div>
+				<label>帳號</label>
+				<input th:field="*{account}">
+			</div>
+			<div>
+				<label>密碼</label>
+				<input type="password" th:field="*{passwd}">
+			</div>
+			<div>
+				<label>姓名</label>
+				<input th:field="*{name}">
+			</div>
+			<div>
+				<label>頭像</label>
+				<input type="file" th:field="*{iconFile}">
+			</div>
+			<button type="submit">Register</button>
+		</form>
+		<p th:if="${error}" th:text="${error}" style="color: red"></p>
+		
+	</body>
+</html>
