@@ -30,4 +30,12 @@ public class CustomerController {
 		
 		return ResponseEntity.ok(c);
 	}
+	
+	@GetMapping("/v3/{id}")
+	public ResponseEntity<Customer> test3(@PathVariable String id) {
+		
+		Customer c = customerRepository.findById(id).orElse(null);
+		
+		return ResponseEntity.ok(c);
+	}
 }
