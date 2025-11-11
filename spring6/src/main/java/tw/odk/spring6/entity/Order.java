@@ -32,6 +32,10 @@ public class Order {
 	//-------------------------------
 	@OneToMany(mappedBy = "order")
 	private List<OrderDetail> orderDetails;
-
+	//----------------------------
+	@ManyToOne
+	@JoinColumn(name = "EmployeeID")
+	@JsonBackReference
+	private Employee employee;
 
 }

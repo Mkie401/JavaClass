@@ -1,8 +1,11 @@
 package tw.odk.spring6.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -23,4 +26,7 @@ public class Employee {
 	
 	@Column(name = "Title")
 	private String title; 
+	//-----------------------
+	@OneToMany(mappedBy = "employee")
+	private List<Order> orders;
 }
