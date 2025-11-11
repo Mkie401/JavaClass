@@ -53,6 +53,9 @@ public class Member {
 	}
 	public void setProfile(Profile profile) {
 		this.profile = profile;
+		if(profile != null) {
+			profile.setMember(this);
+		}
 	}
 	
 	

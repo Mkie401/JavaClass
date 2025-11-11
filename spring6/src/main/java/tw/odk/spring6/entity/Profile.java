@@ -1,9 +1,12 @@
 package tw.odk.spring6.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,7 +38,19 @@ public class Profile {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	
+	//------------------------------
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "member_id")
+	private Member member;
+
+
+
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	
 	
 }
