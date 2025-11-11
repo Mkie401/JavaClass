@@ -32,7 +32,7 @@ public class MemberProfileService {
 				profile.setId(p.getId());
 			}
 			member.setProfile(profile);
-			profile.setMember(member);
+			
 			
 			Member saveMember = memberRepo.save(member);
 			
@@ -40,5 +40,9 @@ public class MemberProfileService {
 		}
 		return null;
 	}
+	
+	public Member findMemberById(Long memberId) {
+		return memberRepo.findById(memberId).orElse(null);	
+		}
 	
 }
