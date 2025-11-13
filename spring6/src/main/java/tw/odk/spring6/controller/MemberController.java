@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.websocket.server.PathParam;
+import tw.odk.spring6.entity.Employee;
 import tw.odk.spring6.entity.Member;
 import tw.odk.spring6.entity.Profile;
 import tw.odk.spring6.repository.MemberRepository;
@@ -76,4 +77,18 @@ public class MemberController {
 		return ResponseEntity.ok(service.findMemberById(id));
 	}
 	
+	
+	@GetMapping("/test1")
+	public void test1() {
+		Employee em = Employee.builder()
+				.firstName("")
+				.lastName("")
+				.title("")
+				.employeeid(123)
+				.build();
+		Employee em2 = new Employee();
+		Employee em3 = new Employee(null,null,null,null,null);
+		
+				
+	}
 }
