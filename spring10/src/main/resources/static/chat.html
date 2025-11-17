@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	</head>
+	<body>
+		<h1>Chat Room</h1>
+		<hr>
+		<div>
+			Account:<input id="account"><br>
+			PassWord:<input id="passwd" type="password"><br>
+			<button id="login">Login</button>
+		</div>
+		<p>登入狀態: <span id="status">未登入</span>
+		
+		<div id="chatArea" style="display:none">
+			<div id="chatBox" 
+			style="border: 1px solid #ccc; width: 480px; height: 300px; overflow-y:scroll"></div>
+			<input id="mesg" style="width:400px">
+			<button id="send">Send</button>
+		</div>
+		
+		
+		
+	</body>
+	<script type="text/javascript">
+		let token = null;
+		let client = null;
+		document.getElementById("login").onclick = async () => {
+			let account = document.getElementById("account").value;
+			let passwd = document.getElementById("passwd").value;
+		
+			let resp = await fetch("/auth/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    "account": account,
+                    "passwd": passwd
+                })
+            });
+			console.log(resp);
+			
+			let data = await resp.json();
+			let token = data.token;
+			document.getElementById("status").innerHTML = "已登入:" + data.account; 
+			connectWebSocket();
+		};
+		
+		function connectWebSocket() {
+			let socket = new SocketJS('/ws-chat?token=' + encodeURIComponent('Bearer ' + token));
+			client = Stomp.over(socket);
+			client.connect({}, function(frame) {
+				console.log(frame);
+				client.subscript("/topic/public",function(message){
+					console.log(message);
+					receiveMessage(JSON.parse(message).body);
+				});
+			});
+		}
+		
+		function receiveMessage(mesg){		
+			let box = document.getElementById("chatBox");
+			let line = document.creatElement("div");
+			line.innerText = ``;
+			box.appendChild(line);
+		}
+		
+		document.getElementById("send").onclick = () => {
+			
+		};
+
+		
+	</script>
+</html>
