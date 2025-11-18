@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Admin Page</h1>
+		<hr>
+		<p th:text="${mesg}"></p>
+		<div>目前登入帳號:<span sec:authentication="name"></span></div>
+		<div>目前登入角色:<span sec:authentication="principal.authorities"></span></div>
+		<hr>
+		<a th:href="@{/logout}">登出</a>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>main</h1>
+		<hr>
+		<p th:text="${mesg}"></p>
+		<div>目前登入帳號:<span sec:authentication="name"></span></div>
+		<div>目前登入角色:<span sec:authentication="principal.authorities"></span></div>
+		<hr>
+		<a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">管理員頁面</a>
+		<form method="post" th:action="@{/logout}">
+			<button type="submit">Logout</button>
+		</form>
+	</body>
+</html>
