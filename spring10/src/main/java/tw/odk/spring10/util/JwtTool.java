@@ -37,16 +37,20 @@ public class JwtTool {
 		
 		return subject;
 	}
-	
-	public static Jws<Claims> parse(String tiken) {
-		return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(tiken);
+
+	public static Jws<Claims> parse(String token){
+		return Jwts.parserBuilder()
+				.setSigningKey(key)
+				.build()
+				.parseClaimsJws(token);
 	}
+	
 	
 	public static String fetchAccount(String token) {
 		return parse(token).getBody().getSubject();
 	}
 	
-	public static boolean isVaild(String token) {
+	public static boolean isValid(String token) {
 		try {
 			parse(token);
 			return true;
@@ -54,5 +58,6 @@ public class JwtTool {
 			return false;
 		}
 	}
+	
 	
 }
